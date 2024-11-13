@@ -1,0 +1,32 @@
+.btn-section
+{
+    height: auto;
+    width: auto;
+    /* background-color: rebeccapurple; */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: end;
+    margin-top: 2.5%;
+    margin-right: 10px;
+}
+.day-button
+{
+    height: auto;
+    padding: 5px 15px;
+    border: 3px solid #1863DC;
+    border-radius: 10px;
+    margin: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in;
+}
+.day-button:hover
+{
+    background-color: #555;
+    border: 3px solid #555;
+    color: white;
+}
+.day-button span label
+{
+    cursor: pointer;
+}
