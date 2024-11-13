@@ -1,0 +1,62 @@
+.container
+{
+    height: auto;
+    width: 100%;
+    /* background-color: aliceblue; */
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+    /* align-items: center; */
+}
+.card
+{
+    margin-top: 20px;
+    /* margin-bottom: 10px; */
+    height: 150px;
+    width: 80%;
+    /* background-color: blue; */
+    cursor: pointer;
+    border: 1px solid #959595;
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    transition: 0.6s ease-out;
+}
+.card:hover
+{
+    background-color: aliceblue;
+}
+.img-section
+{
+    height: 90%;
+    width: 35%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-left: 2%;
+}
+.img-section img
+{
+    height: 100%;
+    width: 100%;
+}
+.text-section
+{
+    height: 90%;
+    width: 60%;
+    /* background-color: rebeccapurple; */
+    display: flex;
+    flex-direction: column;
+}
+.roomTitle
+{
+    font-size: 15px;
+    font-weight: bold;
+}
+.roomSpecs
+{
+    font-size: 12px;
+    color: #959595;
+}

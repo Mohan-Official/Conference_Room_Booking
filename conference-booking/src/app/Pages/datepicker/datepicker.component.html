@@ -1,0 +1,40 @@
+<!-- <button class="day-button">
+    <span style="display: flex;flex-direction: column;cursor: pointer;">
+        <label style="font-weight: bolder;">01</label>
+        <label>MON</label>
+    </span>
+</button>
+<button class="day-button">
+    <span style="display: flex;flex-direction: column;cursor: pointer;">
+        <label style="font-weight: bolder;">02</label>
+        <label>TUE</label>
+    </span>
+</button>
+<button class="day-button">
+    <span style="display: flex;flex-direction: column;cursor: pointer;">
+        <label style="font-weight: bolder;">03</label>
+        <label>WED</label>
+    </span>
+</button>
+<button class="day-button">
+    <span style="display: flex;flex-direction: column;cursor: pointer;">
+        <label style="font-weight: bolder;">04</label>
+        <label>THU</label>
+    </span>
+</button>
+<button class="day-button">
+    <span style="display: flex;flex-direction: column;cursor: pointer;">
+        <label style="font-weight: bolder;">05</label>
+        <label>FRI</label>
+    </span>
+</button> -->
+<div class="btn-section">
+    <mat-icon *ngIf="startIndex > 0" (click)="prevDay()" style="cursor: pointer;">chevron_left</mat-icon>
+    <button *ngFor="let date of visibleDates" class="day-button">
+        <span style="display: flex; flex-direction: column; cursor: pointer;">
+            <label style="font-weight: bolder;">{{ date.day }}</label>
+            <label>{{ date.weekday }}</label>
+        </span>
+    </button>
+    <mat-icon *ngIf="startIndex + visibleDatesCount < filteredDates.length" (click)="nextDay()" style="cursor: pointer;">chevron_right</mat-icon>
+</div>

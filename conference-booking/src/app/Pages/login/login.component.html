@@ -1,0 +1,40 @@
+<div class="login-container">
+  <div class="login-box" [@fadeInUp]>
+    <div class="logo">
+      <span class="logo-text">Welcome</span>
+      <div class="logo-circle"></div>
+    </div>
+    
+    <form (submit)="onSubmit($event)" class="login-form">
+      <div class="input-group">
+        <input 
+          type="text" 
+          [(ngModel)]="loginObject.userName" 
+          name="userName" 
+          required
+          placeholder="username"
+          [class.filled]="loginObject.email">
+      </div>
+      
+      <div class="input-group">
+        <input 
+          type="password" 
+          [(ngModel)]="loginObject.password" 
+          name="password" 
+          required
+          placeholder="Password"
+          [class.filled]="loginObject.password">
+      </div>
+      
+      <button type="submit" class="login-button">
+        Sign In
+        <span class="button-glow"></span>
+      </button>
+      
+      <div class="additional-links">
+        <a href="#">Forgot Password?</a>
+        <a href="#">Create Account</a>
+      </div>
+    </form>
+  </div>
+</div>

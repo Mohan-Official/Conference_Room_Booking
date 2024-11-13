@@ -1,0 +1,12 @@
+<div class="container">
+  <div (click)="bookRoom(room)" class="card" *ngFor="let room of listConfRoom">
+    <div class="img-section">
+      <img [src]="room.ConferenceImg" alt="{{ room.ConferenceName }}">
+    </div>
+    <div class="text-section">
+      <p class="RoomName roomTitle">{{ room.ConferenceName }}</p>
+      <label for="RoomName" class="roomSpecs">{{ room.ConferenceDesc }}</label>
+    </div>
+  </div>
+</div>
+  
