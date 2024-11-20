@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import { RoomService } from '../../room.service';
 
 @Component({
   selector: 'app-datepicker',
@@ -10,10 +11,13 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./datepicker.component.css']
 })
 export class DatepickerComponent implements OnInit {
-  filteredDates: { day: string; weekday: string }[] = [];
+  filteredDates: { day: string; weekday: string, month: string }[] = [];
   startIndex = 0;
   visibleDatesCount = 6;
+  selectedIndex: number | null = null; // Moved selectedIndex to class property
 
+  constructor(private sharedDataService: RoomService) {}
+  
   ngOnInit() {
     this.generateDates();
   }
@@ -21,6 +25,7 @@ export class DatepickerComponent implements OnInit {
   generateDates() {
     this.filteredDates = [];
     const weekdays = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
     let currentDate = new Date();
     let daysToShow = 20;
 
@@ -29,7 +34,8 @@ export class DatepickerComponent implements OnInit {
       if (weekdayIndex !== 0) {
         this.filteredDates.push({
           day: currentDate.getDate().toString().padStart(2, '0'),
-          weekday: weekdays[weekdayIndex]
+          weekday: weekdays[weekdayIndex],
+          month: monthNames[currentDate.getMonth()]
         });
         daysToShow--;
       }
@@ -52,5 +58,11 @@ export class DatepickerComponent implements OnInit {
 
   get visibleDates() {
     return this.filteredDates.slice(this.startIndex, this.startIndex + this.visibleDatesCount);
+  }
+
+  storeDate(date: { day: string; weekday: string; month: string }, i: number) {
+    this.selectedIndex = i; // Set selectedIndex on button click
+    const selectedDate = `${date.month} ${date.day} - ${date.weekday}`;
+    this.sharedDataService.setDate(selectedDate);
   }
 }

@@ -1,0 +1,14 @@
+<div *ngIf="people.length > 0; else noData">
+    <ul>
+      <li *ngFor="let person of people">
+        <strong>Name:</strong> {{ person.name }}<br>
+        <strong>Email:</strong> {{ person.mail }}<br>
+        <strong>Department:</strong> {{ person.department }}
+      </li>
+    </ul>
+  </div>
+  
+  <ng-template #noData>
+    <p>No data available</p>
+  </ng-template>
+  

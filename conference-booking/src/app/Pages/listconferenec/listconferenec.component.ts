@@ -13,22 +13,22 @@ import { RoomService } from '../../room.service';
 export class ListconferenecComponent {
   listConfRoom : { ConferenceImg: string, ConferenceName: string, ConferenceDesc: string }[] = [
     {
-      "ConferenceImg":"https://wallpapercave.com/wp/wp8529649.jpg",
-      "ConferenceName":"Phone Booth 4",
-      "ConferenceDesc":"2 Members - 1 White Board /n 4 Power Socket"
+      "ConferenceImg":"ConferenceRoom Images/Conf2.jpg",
+      "ConferenceName":"Wankhede",
+      "ConferenceDesc":"2 Members - 1 White Board 4 Power Socket"
     },
     {
-      "ConferenceImg" : "https://wallpapercave.com/wp/wp8529649.jpg",
+      "ConferenceImg" : "ConferenceRoom Images/Conf3.jpeg",
       "ConferenceName":"St Andrews",
       "ConferenceDesc":"10 - 16 Members - 1 White Board /n 8 Power Socket | 1 Projector"
     },
     {
-      "ConferenceImg":"https://wallpapercave.com/wp/wp8529649.jpg",
+      "ConferenceImg":"ConferenceRoom Images/Conf4.jpg",
       "ConferenceName":"Phone Booth 3",
       "ConferenceDesc":"2 - 4 Members - 1 White Board /n 4 Power Sockets"
     },
     {
-      "ConferenceImg" : "https://wallpapercave.com/wp/wp8529649.jpg",
+      "ConferenceImg" : "ConferenceRoom Images/Conf5.jpg",
       "ConferenceName":"Phone Booth 1",
       "ConferenceDesc":"3 - 6 Members - 1 White Board /n 4 Power Sockets"
     }
@@ -39,6 +39,6 @@ export class ListconferenecComponent {
   bookRoom(room : any){
     const selectedRoomArray = [room];
     this.sharedDataService.setData(selectedRoomArray)
-    alert('booked')
+    // alert('booked')
   }
 }

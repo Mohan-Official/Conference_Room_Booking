@@ -30,11 +30,20 @@
 </button> -->
 <div class="btn-section">
     <mat-icon *ngIf="startIndex > 0" (click)="prevDay()" style="cursor: pointer;">chevron_left</mat-icon>
-    <button *ngFor="let date of visibleDates" class="day-button">
+    
+    <button 
+        *ngFor="let date of visibleDates; let i = index"
+        (click)="storeDate(date, i)" 
+        [ngClass]="{'active': selectedIndex === i}"
+        class="day-button">
         <span style="display: flex; flex-direction: column; cursor: pointer;">
-            <label style="font-weight: bolder;">{{ date.day }}</label>
-            <label>{{ date.weekday }}</label>
+            <label style="font-weight: bolder;">{{ date.month }}</label>
+            <label style="font-weight: bolder;">{{ date.day }}  {{ date.weekday }}</label>
+            <label></label>
         </span>
     </button>
+    
     <mat-icon *ngIf="startIndex + visibleDatesCount < filteredDates.length" (click)="nextDay()" style="cursor: pointer;">chevron_right</mat-icon>
 </div>
+
+  

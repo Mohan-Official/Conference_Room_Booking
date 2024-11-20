@@ -3,6 +3,7 @@
     height: auto;
     width: 100%;
     /* background-color: aliceblue; */
+    padding-bottom: 20px;
     display: flex;
     flex-direction: column;
     margin-left: 15px;
@@ -14,9 +15,10 @@
     /* margin-bottom: 10px; */
     height: 150px;
     width: 80%;
+    margin-left: 2.5%;
     /* background-color: blue; */
     cursor: pointer;
-    border: 1px solid #959595;
+    /* border: 1px solid #959595; */
     border-radius: 10px;
     overflow: hidden;
     display: flex;
@@ -24,6 +26,7 @@
     align-items: center;
     justify-content: space-between;
     transition: 0.6s ease-out;
+    box-shadow: rgba(67, 71, 85, 0.27) 0px 0px 0.25em, rgba(90, 125, 188, 0.05) 0px 0.25em 1em;
 }
 .card:hover
 {

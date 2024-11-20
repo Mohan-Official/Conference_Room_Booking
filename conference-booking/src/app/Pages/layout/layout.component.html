@@ -5,17 +5,30 @@
             <a href="">Home</a>
         </li>
         <li class="nav-li">
-            <a href="">About</a>
+            <a href="/about">About</a>
         </li>
         <li class="nav-li">
-            <a href="">Contact</a>
+            <a href="">Contact</a> 
         </li>
         <li class="nav-li">
             <a href="">Help</a>
         </li>
-        <mat-icon class="nav-icons" style="margin-right: 30px;" matBadge="15">notifications</mat-icon>
-        <mat-icon class="nav-icons" >account_circle</mat-icon>
-        
+        <!-- <mat-icon 
+            class="nav-icons" 
+            style="margin-right: 30px;" 
+            [matBadge]="bookingCountSignal()"
+            [matBadgeHidden]="bookingCountSignal() === 0">
+            notifications
+        </mat-icon> -->
+
+        <mat-icon 
+            class="nav-icons custom-badge" 
+            style="margin-right: 30px;" 
+            [matBadge]="count" 
+        >
+            notifications
+        </mat-icon>
+        <mat-icon class="nav-icons">account_circle</mat-icon>
     </ul>
 </nav>
-<router-outlet />
+<router-outlet></router-outlet>

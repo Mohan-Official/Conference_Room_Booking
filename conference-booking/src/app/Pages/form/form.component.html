@@ -1,10 +1,159 @@
-<section class="form-container">
-    <div class="form-section">
-      <mat-form-field appearance="outline">
+<section class="form-container" *ngIf="divCount == 1">
+  <form [formGroup]="bookingForm" (ngSubmit)="submitForm($event)" class="form-section">
+    <span class="form-section-row">
+      <mat-form-field class="small" appearance="outline">
         <mat-label>Room Name</mat-label>
-        <input matInput placeholder="Placeholder" [value]="receivedData()[0]?.ConferenceName" disabled>
+        <input matInput placeholder="Ex: St Andrews" formControlName="roomName" [value]="receivedData()?.[0]?.ConferenceName || 'No Room' " readonly>
         <mat-icon matSuffix>meeting_room</mat-icon>
+        <mat-error class="error-hint" *ngIf="bookingForm.get('roomName')?.hasError('required')">
+          Select a Room
+        </mat-error>
       </mat-form-field>
-    </div>
-  </section>
+
+      <mat-form-field appearance="outline" class="custom-border-color small">
+        <mat-label>Booking Name</mat-label>
+        <input matInput placeholder="Ex: Steve" [(ngModel)]="BookingName" formControlName="bookingName">
+        <mat-icon matSuffix>person</mat-icon>
+        <mat-error class="error-hint" *ngIf="bookingForm.get('bookingName')?.hasError('required')">
+          Booking Name is required.
+        </mat-error>
+      </mat-form-field>
+    </span> 
+
+    <span class="form-section-row">
+      <mat-form-field class="small" appearance="outline">
+        <mat-label>Booking Date</mat-label>
+        <input matInput placeholder="MMM DD - DAY" [value]="selectedDate() || 'No Date Selected'" formControlName="bookingDate" readonly>
+        <mat-icon matSuffix>event</mat-icon>
+        <mat-error class="error-hint" *ngIf="bookingForm.get('bookingDate')?.hasError('required')">
+          Select a booking date.
+        </mat-error>
+      </mat-form-field>
+      
+      <mat-form-field appearance="outline" class="custom-border-color small">
+        <mat-label>Booking Mail-id</mat-label>
+        <input type="email" matInput placeholder="Ex: steve@indiumsoft.com" [(ngModel)]="BookingEmail" formControlName="bookingEmail" required>
+        <mat-icon matSuffix>mail</mat-icon>
+        <mat-error class="error-hint" *ngIf="bookingForm.get('bookingEmail')?.hasError('required')">
+          Booking Email is required.
+        </mat-error>
+      </mat-form-field>
+    </span>
+
+    <span class="form-section-row">
+      <mat-form-field class="small" style="width: 88%;" appearance="outline">
+        <mat-label>Reason</mat-label>
+        <input matInput placeholder="Reason for booking room" [(ngModel)]="BookingReason" formControlName="bookingReason" >
+        <mat-icon matSuffix>rate_review</mat-icon>
+        <mat-error style="margin-left: -3%;" *ngIf="bookingForm.get('bookingReason')?.hasError('required')">
+          Enter a reason for booking
+        </mat-error>
+      </mat-form-field>
+    </span>
+
+    <span>
+      <app-timeslotselector></app-timeslotselector>
+    </span>
+
+    <span style="display: flex; justify-content: end;">
+      <button type="submit" class="form-next-btn">Next</button>
+    </span>
+  </form>
+</section>
+
+<section *ngIf="divCount==2" class="Over-View-Container">
+  <mat-card appearance="outlined" class="overview-card">
+    <mat-card-header class="overview-header">Booking Details</mat-card-header>
+    <mat-card-content class="overview-content">
+      <section class="overview-column">
+        <div class="overview-row">
+          <span class="overview-icon-span">
+            <mat-icon matSuffix class="overview-icon">person</mat-icon>
+          </span>
+          <span class="sub-overview-cont">
+              Booking Name
+            <label for="" class="overviewName">{{BookingName}}</label>
+          </span>
+        </div>
   
+        <div class="overview-row">
+          <span class="overview-icon-span">
+            <mat-icon matSuffix class="overview-icon">calendar_today</mat-icon>
+          </span>
+          <span class="sub-overview-cont">
+              Booking Date
+            <label for="" class="overviewName">{{selectedDate()}}</label>
+          </span>
+        </div>
+  
+        <div class="overview-row">
+          <span class="overview-icon-span">
+            <mat-icon matSuffix class="overview-icon">meeting_room</mat-icon>
+          </span>
+          <span class="sub-overview-cont">
+              Booking Room
+            <label for="" class="overviewName">{{receivedData()?.[0]?.ConferenceName}}</label>
+          </span>
+        </div>
+      </section>
+      <section class="overview-column">
+        <div class="overview-row">
+          <span class="overview-icon-span">
+            <mat-icon matSuffix class="overview-icon">schedule</mat-icon>
+          </span>
+          <span class="sub-overview-cont">
+              Booking Time
+              <label for="" class="overviewName">
+                <!-- {{ selectedTimeSlot()?.[0] }} -  -->
+                {{ selectedTimeSlot()}}
+                <!-- {{ selectedTimeSlot()?.[timeSlotLength] || 'No End Time' }} -->
+              </label>
+          </span>
+        </div>
+  
+        <div class="overview-row">
+          <span class="overview-icon-span">
+            <mat-icon matSuffix class="overview-icon">mail</mat-icon>
+          </span>
+          <span class="sub-overview-cont">
+              Booking Email
+            <label for="" class="overviewName">{{BookingEmail}}</label>
+          </span>
+        </div>
+
+        <div class="overview-row">
+          <span class="overview-icon-span">
+            <mat-icon matSuffix class="overview-icon">notes</mat-icon>
+          </span>
+          <span class="sub-overview-cont">
+              Booking Reason
+            <label for="" class="overviewName">{{BookingReason}}</label>
+          </span>
+        </div>
+      </section>
+    </mat-card-content>
+    <mat-card-footer class="overview-footer">
+      <section class="overview-footer-row">
+        <button class="overview-btn btn-One" style="background-color: #FFFFFF;color: #171717;border: 1px solid #171717;" (click)="BackToEdit()">Back to Edit</button>
+        <button class="overview-btn" style="background-color: #171717;color: #FFFFFF;margin-left: 30px;" (click)="confirmBooking()">Confirm Booking</button>
+      </section>
+    </mat-card-footer>
+  </mat-card>   
+</section>
+
+<section *ngIf="divCount==3">
+  <div class="card">
+    <div class="checkmark">
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke-width="2.5">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <div class="message">
+      <p>Hi {{BookingName}} your room is booked.</p>
+      <p>Thanks for booking.</p>
+      <p>Have a great day</p>
+      <p style="font-size: 10px;">from Team Indium</p>
+    </div>
+    <button class="button" (click)="onOkClick()">OK</button>
+  </div>
+</section>
