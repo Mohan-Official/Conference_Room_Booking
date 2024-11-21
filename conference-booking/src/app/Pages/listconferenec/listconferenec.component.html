@@ -1,12 +1,48 @@
 <div class="container">
-  <div (click)="bookRoom(room)" class="card" *ngFor="let room of listConfRoom">
+  <!-- <div (click)="bookRoom(room)" class="card" *ngFor="let room of roomsData">
     <div class="img-section">
       <img [src]="room.ConferenceImg" alt="{{ room.ConferenceName }}">
     </div>
     <div class="text-section">
-      <p class="RoomName roomTitle">{{ room.ConferenceName }}</p>
+      <p class="RoomName roomTitle">{{ room.name }}</p>
       <label for="RoomName" class="roomSpecs">{{ room.ConferenceDesc }}</label>
     </div>
+  </div> -->
+  <div *ngFor="let room of roomsData" class="card" (click)="bookRoom(room)">
+    <div class="img-section">
+      <img src="ConferenceRoom Images/Conf4.jpg" alt="{{ room.roomname }}">
+      <p *ngIf="!room.image">No Image Available</p> <!-- Display a placeholder text if no image -->
+    </div>
+    
+    <div class="text-section">
+        <p class="RoomName roomTitle">{{ room.roomname }}</p>    
+        <span class="capacity-row">
+          <mat-icon class="capacity-icon">group</mat-icon>
+          <p class="quantity">Capacity: {{ room.quantity }} people</p>
+        </span>
+        <span class="facilities-row">
+          <p class="facility-header">Facilities:</p>
+          <span class="facilities-sub-row">
+            <span class="roomSpecs" *ngFor="let facility of room.facilities.split(', ')" [attr.key]="facility">
+              <mat-icon *ngIf="facility == 'AC'" class="facility-icon">ac_unit</mat-icon>
+              <mat-icon style="padding-left: 0px;" *ngIf="facility == 'Wi-Fi'" class="facility-icon">wifi</mat-icon>
+              <mat-icon *ngIf="facility == 'Projector'" class="facility-icon">videocam</mat-icon>
+              <mat-icon *ngIf="facility == 'Video Conferencing'" class="facility-icon">videocam</mat-icon>
+              <mat-icon *ngIf="facility == 'Whiteboard'" class="facility-icon">desktop_windows</mat-icon>
+              <mat-icon *ngIf="facility == 'Conference Phone'" class="facility-icon">call</mat-icon>
+              <mat-icon *ngIf="facility == 'Smart TV'" class="facility-icon">desktop_windows</mat-icon>
+              <mat-icon *ngIf="facility == 'TV Screen'" class="facility-icon">desktop_windows</mat-icon>
+              <mat-icon *ngIf="facility == 'Speaker System'" class="facility-icon">speaker_phone</mat-icon>
+
+              <label for="facility-icon" style="margin-left: -10px;">
+                {{ facility }}
+              </label>
+            </span>   
+          </span>
+        </span>
+         
+    </div>
   </div>
+  
 </div>
   

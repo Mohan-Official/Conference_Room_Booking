@@ -33,9 +33,8 @@ export class LayoutComponent implements OnInit {
   getNotificationDetails(): Observable<any> {
     return this.http.get<any>(this.apiUrl);
   }
+  
   constructor(private roomService: RoomService, private http: HttpClient) {
-    
-    
     effect(() => {
       // const notificationCount = this.receivedNotification() || '';
       // const bookingItem = localStorage.getItem("bookings");
@@ -54,7 +53,6 @@ export class LayoutComponent implements OnInit {
       // console.log("received noti:", notificationCount);
       // console.log('hi');
     });
-    
   }
 
 }
